@@ -43,8 +43,8 @@ class Controller
     {
         
         $latte = new \Latte\Engine;
-        $latte->setTempDirectory(RUNTIME_PATH . '/latte');
-        // if(defined('PANGZI_DEV') && PANGZI_DEV) {
+        $latte->setTempDirectory(G::$path_runtime . '/latte');
+        // if (G::$dev) {
         //     $latte->setAutoRefresh(true);
         // }
         $latte->setAutoRefresh(true);
@@ -53,7 +53,7 @@ class Controller
             $finder = function (\Latte\Runtime\Template $template) {
                 if (!$template->getReferenceType()) {
                     // it returns the path to the parent template file
-                    return APP_PATH . '/views/layouts/' . $this->layout . '.latte';
+                    return G::$path_app . '/views/layouts/' . $this->layout . '.latte';
                 }
             };
             $latte->addProvider('coreParentFinder', $finder);
@@ -63,8 +63,8 @@ class Controller
         if(!$action) $action = $this->request->action;
         
         try {
-            $this->tplVars['RUNTIME'] = round((microtime(true)-TIME_START)*1000);
-            $latte->render(APP_PATH . '/views/' . $module . '/' . $controller . '/' .  $action .'.latte', $this->tplVars);
+            $this->tplVars['G::$path_runtime'] = round((microtime(true)-G::$time_start)*1000);
+            $latte->render(G::$path_app . '/views/' . $module . '/' . $controller . '/' .  $action .'.latte', $this->tplVars);
         } catch(\Exception $e) {
             die($e->getMessage());
         }

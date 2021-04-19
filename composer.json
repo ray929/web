@@ -7,7 +7,6 @@
         "latte/latte": "^2.10",
         "symfony/cache": "^5.2"
     },
-    "minimum-stability": "dev",
     "authors": [
         {
             "name": "pangzi",

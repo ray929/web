@@ -21,7 +21,7 @@ class Session implements \SessionHandlerInterface
             // if (php_sapi_name() != 'cli')
             //     error_log("Session save path is empty! (use /tmp)", E_USER_ERROR);
 
-            $savePath = RUNTIME_PATH;
+            $savePath = G::$path_runtime;
         }
 
         if (!is_dir($savePath) || !is_writable($savePath)) {

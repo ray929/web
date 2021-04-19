@@ -5,6 +5,7 @@ namespace pangzi\web;
 class App
 {
     public function __construct() {
+        spl_autoload_register('\\pangzi\\web\\Loader::autoload');
         $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $path = preg_replace('/(\\/{2,})/' , '/' , $path);
         $module = $controller = $action = 'index';

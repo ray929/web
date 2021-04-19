@@ -16,12 +16,12 @@ class Config
     private static function load()
     {
         if (!self::$config) {
-            $configFile = APP_PATH . '/config.php';
+            $configFile = G::$path_app . '/config.php';
             if (file_exists($configFile)) {
                 self::$config = include($configFile);
             }
-            if (defined('PANGZI_DEV') && PANGZI_DEV) {
-                $configFile_dev = APP_PATH . '/config.dev.php';
+            if (G::$dev) {
+                $configFile_dev = G::$path_app . '/config.dev.php';
                 if (file_exists($configFile_dev)) {
                     $config_dev = include($configFile_dev);
                     foreach (self::$config as $key => $value) {
