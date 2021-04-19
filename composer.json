@@ -1,0 +1,22 @@
+{
+    "name": "pangzi/web",
+    "type": "library",
+    "require": {
+        "php": "^8.0",
+        "catfan/medoo": "^1.7",
+        "latte/latte": "^2.10",
+        "symfony/cache": "^5.2"
+    },
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "pangzi",
+            "email": "git@mail.laxi.online"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "pangzi\\web\\": "src/pangzi/web"
+        }
+    }
+}

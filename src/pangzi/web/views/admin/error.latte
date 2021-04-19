@@ -1,0 +1,25 @@
+{block content}
+<div class="layui-fluid">
+    <div class="layadmin-tips">
+        <img src="{$static_url}/layadmin/img/error.svg" style="max-width: 80%;width: 400px;" />
+
+        <div class="layui-text" style="font-size: 20px;">
+            {$msg}
+        </div>
+
+    </div>
+</div>
+
+<script>
+    layui.use(['index']);
+    {if $url}
+    setTimeout(function(){
+        {if $top}
+        top.location = {$url};
+        {else}
+        location = {$url};
+        {/if}
+    } , 1000);
+    {/if}
+</script>
+{/block}
