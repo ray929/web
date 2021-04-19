@@ -22,14 +22,16 @@ class Admin
 
 
     private string $title = 'Admin';
-    private string $static_url = G::$path_assets.'/admin';
+    private string $static_url = '';
     private string $default_page = '/admin/index/index';
-    private string $runtime_path = G::$path_runtime . '/admin';
+    private string $runtime_path = '';
     private string $session_prefix = 'admin_fqxCgbrv_';
     private string $secretKey = 'aX75MbQf3HRdcPNy';
 
     public function __construct(Request $request, array $config = [])
     {
+        $this->static_url = G::$path_assets.'/admin';
+        $this->runtime_path = G::$path_runtime . '/admin';
         $this->request = $request;
         if (strpos($_SERVER['HTTP_ACCEPT'], 'json') !== false || $this->request->get('json')) {
             $this->isJson = true;
@@ -205,7 +207,7 @@ class Admin
             $latte->addProvider('coreParentFinder', $finder);
         }
 
-        $this->tplVars['G::$path_runtime'] = round((microtime(true) - G::$time_start) * 1000);
+        $this->tplVars['RUNTIME'] = round((microtime(true) - G::$time_start) * 1000);
         $this->tplVars['static_url'] = $this->static_url;
         $this->tplVars['default_page'] = $this->default_page;
         $this->tplVars['title'] = $this->title;

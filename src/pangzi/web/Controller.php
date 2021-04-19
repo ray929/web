@@ -63,7 +63,7 @@ class Controller
         if(!$action) $action = $this->request->action;
         
         try {
-            $this->tplVars['G::$path_runtime'] = round((microtime(true)-G::$time_start)*1000);
+            $this->tplVars['RUNTIME'] = round((microtime(true)-G::$time_start)*1000);
             $latte->render(G::$path_app . '/views/' . $module . '/' . $controller . '/' .  $action .'.latte', $this->tplVars);
         } catch(\Exception $e) {
             die($e->getMessage());
