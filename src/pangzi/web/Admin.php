@@ -22,9 +22,9 @@ class Admin
 
 
     private string $title = 'Admin';
-    private string $static_url = '/static/assets/admin';
+    private string $static_url = G::$path_assets.'/admin';
     private string $default_page = '/admin/index/index';
-    private string $runtime_path = RUNTIME_PATH . '/admin';
+    private string $runtime_path = G::$path_runtime . '/admin';
     private string $session_prefix = 'admin_fqxCgbrv_';
     private string $secretKey = 'aX75MbQf3HRdcPNy';
 
@@ -186,7 +186,7 @@ class Admin
     {
         $latte = new \Latte\Engine;
         $latte->setTempDirectory($this->runtime_path . '/latte');
-        // if(defined('PANGZI_DEV') && PANGZI_DEV) {
+        // if (G::$dev) {
         //     $latte->setAutoRefresh(true);
         // }
         $latte->setAutoRefresh(true);
@@ -205,7 +205,7 @@ class Admin
             $latte->addProvider('coreParentFinder', $finder);
         }
 
-        $this->tplVars['RUNTIME'] = round((microtime(true) - TIME_START) * 1000);
+        $this->tplVars['G::$path_runtime'] = round((microtime(true) - G::$time_start) * 1000);
         $this->tplVars['static_url'] = $this->static_url;
         $this->tplVars['default_page'] = $this->default_page;
         $this->tplVars['title'] = $this->title;
